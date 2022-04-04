@@ -56,6 +56,15 @@ public class FilmQueryApp {
 		  
 		  case 1:
 			  
+			  System.out.println("Please enter the film ID: ");
+			  int id = input.nextInt();
+			  
+			  System.out.println("Finding film ID...");
+			  System.out.println();
+			  
+			  Film film = db.findFilmById(id);
+			  
+			  displayFilm(film);
 			  
 			  break;
 			  
@@ -88,6 +97,15 @@ public class FilmQueryApp {
 		  }
 		  
 	  }
+	  
+  }
+  
+  private void displayFilm(Film film) {
+	  System.out.println("Title: " + film.getTitle());
+	  System.out.println("Year released: " + film.getRelease_year());
+	  System.out.println("Rating: " + film.getRating());
+	  System.out.println("Description: " + film.getDescription());
+	  System.out.println();
 	  
   }
 
