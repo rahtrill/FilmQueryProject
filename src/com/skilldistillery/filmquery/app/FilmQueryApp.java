@@ -126,6 +126,7 @@ public class FilmQueryApp {
 	  System.out.println("Language: " + db.pullLanguageFromId(film.getLanguage_id()));
 	  System.out.print("Cast: " + film.getCast());
 	  System.out.println();
+	  System.out.println();
 	  
   }
 
