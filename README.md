@@ -31,7 +31,11 @@ The cast of a film is a list of Actor Objects that have an ID, first name, and l
 
 ## Lessons Learned
 
+I learned that it can be extremely useful to use the JDBC and pull data from a database using SQL to create Objects and use that data to assign to the Object's variables.
 
+At some point during the program, I attempted to create methods that would return a String, and that would not have properly fulfilled the requirements for the program. Returning a String to assign data would have been much easier, but I instead had to work around that rule to individually call another prepared statement to get the data I needed.
+
+Another lesson I learned was to close the java.sql.Connection and it's sub classes. If I do not close these, then every connection I make will run until there are no longer any connections available. I had this in mind when planning the program but did not think about it when writing the code until after the code was done.
 
 ## Technologies Used
 
