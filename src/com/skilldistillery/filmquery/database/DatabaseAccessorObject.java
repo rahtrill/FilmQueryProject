@@ -65,6 +65,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return film;
 	}
 
+
 	public Actor findActorById(int actorId) {
 		String statement = "SELECT * FROM actor WHERE actor.id = ?";
 		Actor actor = null;
@@ -125,5 +126,5 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		
 		return actorList;
 	}
-
+	
 }

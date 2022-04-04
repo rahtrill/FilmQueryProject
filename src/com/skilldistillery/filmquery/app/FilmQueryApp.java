@@ -14,8 +14,8 @@ public class FilmQueryApp {
 
   public static void main(String[] args) {
     FilmQueryApp app = new FilmQueryApp();
-    app.test();
-//    app.launch();
+//    app.test();
+    app.launch();
   }
 
   private void test() {
@@ -36,7 +36,59 @@ public class FilmQueryApp {
   }
 
   private void startUserInterface(Scanner input) {
-    
+	  boolean inMenu = true;
+	  
+	  while (inMenu) {
+		  System.out.println();
+		  System.out.println("=======================================");
+		  System.out.println("=     Film Query Application Menu     =");
+		  System.out.println("======================================="); 
+		  System.out.println("= (Please choose an option by number) =");
+		  System.out.println("======================================="); 
+		  System.out.println("= 1. Look up a film by it's ID        =");
+		  System.out.println("= 2. Look up a film by a keyword      =");
+		  System.out.println("= 3. Exit this application            =");
+		  System.out.println("======================================="); 
+		  System.out.println();
+		  int answer = input.nextInt();
+		  
+		  switch (answer) {
+		  
+		  case 1:
+			  
+			  
+			  break;
+			  
+		  case 2:
+			  
+			  
+			  break;
+			  
+		  case 3:
+			  
+			  System.out.println("==================================================="); 
+			  System.out.println("= Thank you for using the Film Query Application! =");
+			  System.out.println("==================================================="); 
+			  System.out.println("=                     Goodbye!                    =");
+			  System.out.println("===================================================");
+			  System.out.println();
+			  inMenu = false;
+			  
+			  break;
+			  
+		  default:
+				 
+			  System.out.println("==================================================="); 
+			  System.out.println("=    Your input was invalid. Please try again.    =");
+			  System.out.println("==================================================="); 
+			  System.out.println();
+			  
+			  break;
+		  
+		  }
+		  
+	  }
+	  
   }
 
 }
