@@ -56,3 +56,11 @@ The following are the technologies used for this program:
 The technologies used were imperative to the proper output of this program.
 
 ## What was the most difficult part of this project?
+
+The most difficult part of this program was retrieving the language using the language_id data provided by a film. The guidelines set for this project specified that I could not return a String or a List<String> in any method in the program.
+
+This proved to be challenging because the convenience of being able to refer to a method that returns a String to put into the Film Object is taken away. Instead, I had to create another prepared statement to search for the language name using the language_id data from the film.
+
+Here is the prepared statement for finding the language in the film:
+
+`SELECT language.name FROM language JOIN film ON film.language_id = language.id WHERE film.id = ?`
