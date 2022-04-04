@@ -39,6 +39,20 @@ Another lesson I learned was to close the java.sql.Connection and it's sub class
 
 ## Technologies Used
 
+The following are the technologies used for this program:
 
+- mySQL.
+- Java Database Connectivity.
+- DriverManager.
+- PreparedStatement.
+- ResultSet.
+- Switch/case statements.
+- Interfaces.
+- ArrayList.
+- Exceptions.
+- Try/Catch.
+- Try-with-resources.
+
+The technologies used were imperative to the proper output of this program.
 
 ## What was the most difficult part of this project?
