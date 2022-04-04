@@ -166,4 +166,28 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return actorList;
 	}
 	
+	public String pullLanguageFromId(int langId) {
+		String statement = "SELECT language.name FROM language WHERE language.id = ?";
+		String language = "";
+		try ( 
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement ps = conn.prepareStatement(statement); ) {
+			
+			ps.setInt(1, langId);
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next() && langId > 0) {
+				
+				language = rs.getString("language.name");
+			
+			}
+			rs.close();
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return language;
+	}
+
 }

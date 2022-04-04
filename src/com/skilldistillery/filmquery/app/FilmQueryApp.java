@@ -123,6 +123,7 @@ public class FilmQueryApp {
 	  System.out.println("Year released: " + film.getRelease_year());
 	  System.out.println("Rating: " + film.getRating());
 	  System.out.println("Description: " + film.getDescription());
+	  System.out.println("Language: " + db.pullLanguageFromId(film.getLanguage_id()));
 	  System.out.println();
 	  
   }
