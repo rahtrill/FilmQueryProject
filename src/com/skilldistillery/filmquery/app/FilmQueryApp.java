@@ -70,6 +70,24 @@ public class FilmQueryApp {
 			  
 		  case 2:
 			  
+			  System.out.println("Please enter the keyword for your search: ");
+			  System.out.println();
+			  String keyword = input.next();
+			  keyword = keyword + input.nextLine();
+			  
+			  System.out.println("Finding film(s) by keyword...");
+			  System.out.println();
+			  
+			  List<Film> filmList = db.findFilmByKeyword(keyword);
+			  
+			  if (filmList.size() == 0) {
+				  System.out.println();
+				  System.out.println("There were no films found matching your search.");
+			  } else {
+				  for (Film film2 : filmList) {
+					  displayFilm(film2);
+				  }
+			  }
 			  
 			  break;
 			  

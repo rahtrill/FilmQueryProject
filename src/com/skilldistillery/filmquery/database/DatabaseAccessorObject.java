@@ -64,7 +64,46 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		
 		return film;
 	}
-
+	
+	public List<Film> findFilmByKeyword(String keyword) {
+		String statement = "SELECT * FROM film WHERE film.title LIKE(?) OR film.description LIKE(?);";
+		List<Film> filmList = new ArrayList<>();
+		
+		try ( 
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement ps = conn.prepareStatement(statement); ) {
+			
+			ps.setString(1, ("%" + keyword + "%"));
+			ps.setString(2, ("%" + keyword + "%"));
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				
+				Film newFilm = new Film();
+				newFilm.setId(rs.getInt("film.id"));
+				newFilm.setTitle(rs.getString("film.title"));
+				newFilm.setDescription(rs.getString("film.description"));
+				newFilm.setRelease_year(rs.getString("film.release_year"));
+				newFilm.setLanguage_id(rs.getInt("film.language_id"));
+				newFilm.setRental_duration(rs.getInt("film.rental_duration"));
+				newFilm.setRental_rate(rs.getDouble("film.rental_rate"));
+				newFilm.setLength(rs.getInt("film.length"));
+				newFilm.setReplacement_cost(rs.getDouble("film.replacement_cost"));
+				newFilm.setRating(rs.getString("film.rating"));
+				newFilm.setSpecial_features(rs.getString("film.special_features"));
+				newFilm.setCast(findActorsByFilmId(newFilm.getId()));
+				
+				filmList.add(newFilm);
+			
+			}
+			rs.close();
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return filmList;
+	}
 
 	public Actor findActorById(int actorId) {
 		String statement = "SELECT * FROM actor WHERE actor.id = ?";
