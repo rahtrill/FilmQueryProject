@@ -53,6 +53,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				newFilm.setSpecial_features(rs.getString("film.special_features"));
 				newFilm.setCast(findActorsByFilmId(filmId));
 				
+				PreparedStatement ps2 = conn.prepareStatement("SELECT language.name FROM language JOIN film ON film.language_id = language.id WHERE film.id = ?");
+				ps2.setInt(1, filmId);
+				ResultSet rs2 = ps2.executeQuery();
+				
+				if (rs2.next()) {
+					newFilm.setLanguage(rs2.getString("language.name"));
+				}
+				
 				film = newFilm;
 			
 			}
@@ -66,7 +74,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 	
 	public List<Film> findFilmByKeyword(String keyword) {
-		String statement = "SELECT * FROM film WHERE film.title LIKE(?) OR film.description LIKE(?);";
+		String statement = "SELECT * FROM film WHERE film.title LIKE(?) OR film.description LIKE(?)";
 		List<Film> filmList = new ArrayList<>();
 		
 		try ( 
@@ -92,6 +100,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				newFilm.setRating(rs.getString("film.rating"));
 				newFilm.setSpecial_features(rs.getString("film.special_features"));
 				newFilm.setCast(findActorsByFilmId(newFilm.getId()));
+				
+				PreparedStatement ps2 = conn.prepareStatement("SELECT language.name FROM language JOIN film ON film.language_id = language.id WHERE film.id = ?");
+				ps2.setInt(1, newFilm.getId());
+				ResultSet rs2 = ps2.executeQuery();
+				
+				if (rs2.next()) {
+					newFilm.setLanguage(rs2.getString("language.name"));
+				}
 				
 				filmList.add(newFilm);
 			
@@ -166,28 +182,4 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return actorList;
 	}
 	
-	public String pullLanguageFromId(int langId) {
-		String statement = "SELECT language.name FROM language WHERE language.id = ?";
-		String language = "";
-		try ( 
-			Connection conn = DriverManager.getConnection(URL, user, pass);
-			PreparedStatement ps = conn.prepareStatement(statement); ) {
-			
-			ps.setInt(1, langId);
-			ResultSet rs = ps.executeQuery();
-			
-			if (rs.next() && langId > 0) {
-				
-				language = rs.getString("language.name");
-			
-			}
-			rs.close();
-					
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return language;
-	}
-
 }

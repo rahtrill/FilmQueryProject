@@ -16,6 +16,7 @@ public class Film {
 	private String rating;
 	private String special_features;
 	private List<Actor> cast;
+	private String language;
 	
 	public Film() {
 		
@@ -23,7 +24,7 @@ public class Film {
 	
 	public Film(int id, String title, String description, String release_year, int language_id, int rental_duration,
 			double rental_rate, int length, double replacement_cost, String rating, String special_features,
-			List<Actor> cast) {
+			List<Actor> cast, String language) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -37,6 +38,7 @@ public class Film {
 		this.rating = rating;
 		this.special_features = special_features;
 		this.cast = cast;
+		this.language = language;
 	}
 
 	public int getId() {
@@ -134,18 +136,18 @@ public class Film {
 	public void setCast(List<Actor> cast) {
 		this.cast = cast;
 	}
+	
+	public String getLanguage() {
+		return language;
+	}
 
-	@Override
-	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", release_year=" + release_year
-				+ ", language_id=" + language_id + ", rental_duration=" + rental_duration + ", rental_rate="
-				+ rental_rate + ", length=" + length + ", replacement_cost=" + replacement_cost + ", rating=" + rating
-				+ ", special_features=" + special_features + ", cast=" + cast + "]";
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cast, description, id, language_id, length, rating, release_year, rental_duration,
+		return Objects.hash(cast, description, id, language, language_id, length, rating, release_year, rental_duration,
 				rental_rate, replacement_cost, special_features, title);
 	}
 
@@ -159,11 +161,20 @@ public class Film {
 			return false;
 		Film other = (Film) obj;
 		return Objects.equals(cast, other.cast) && Objects.equals(description, other.description) && id == other.id
-				&& language_id == other.language_id && length == other.length && Objects.equals(rating, other.rating)
+				&& Objects.equals(language, other.language) && language_id == other.language_id
+				&& length == other.length && Objects.equals(rating, other.rating)
 				&& Objects.equals(release_year, other.release_year) && rental_duration == other.rental_duration
 				&& Double.doubleToLongBits(rental_rate) == Double.doubleToLongBits(other.rental_rate)
 				&& Double.doubleToLongBits(replacement_cost) == Double.doubleToLongBits(other.replacement_cost)
 				&& Objects.equals(special_features, other.special_features) && Objects.equals(title, other.title);
+	}
+
+	@Override
+	public String toString() {
+		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", release_year=" + release_year
+				+ ", language_id=" + language_id + ", rental_duration=" + rental_duration + ", rental_rate="
+				+ rental_rate + ", length=" + length + ", replacement_cost=" + replacement_cost + ", rating=" + rating
+				+ ", special_features=" + special_features + ", cast=" + cast + ", language=" + language + "]";
 	}
 
 }
